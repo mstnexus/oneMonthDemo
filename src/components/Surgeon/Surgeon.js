@@ -50,7 +50,7 @@ library.add(fab, faCircle, faDropbox);
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "80%",
+    width: "100%",
     marginTop: 20,
     margin: "auto"
   },
@@ -59,7 +59,8 @@ const useStyles = makeStyles(theme => ({
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    textAlign: "center"
   },
   icon: {
     verticalAlign: "bottom",
@@ -70,7 +71,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center"
   },
   column: {
-    flexBasis: "33.33%"
+    flexBasis: "25%"
   },
   helper: {
     borderLeft: `2px solid ${theme.palette.divider}`,
@@ -91,6 +92,12 @@ const useStyles = makeStyles(theme => ({
 export default function DetailedExpansionPanel() {
   const handleVisibility = () => {
     let report = document.getElementById("report");
+
+    report.style.display = report.style.display === "none" ? "" : "none";
+  };
+
+  const handleFundusVisibility = () => {
+    let report = document.getElementById("fundus");
 
     report.style.display = report.style.display === "none" ? "" : "none";
   };
@@ -116,7 +123,7 @@ export default function DetailedExpansionPanel() {
         <Divider />
         <ExpansionPanelDetails className={classes.details}>
           <Typography>
-            <span style={{ width: "100px" }}>Doe, John</span>
+            <span>Doe, John</span>
           </Typography>
           <div className={classes.column} />
           <div className={classes.column}>
@@ -146,13 +153,44 @@ export default function DetailedExpansionPanel() {
             </Typography>
           </div>
         </ExpansionPanelDetails>
+        <ExpansionPanelDetails>
+          <Typography>
+            <span style={{ width: "100px" }}>Doe, Jane</span>
+          </Typography>
+          <div className={classes.column} />
+          <div className={classes.column}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="small"
+              onClick={handleFundusVisibility}
+            >
+              Toggle Fundus
+              <ArrowIcon />
+            </Button>
+          </div>
+          <div className={clsx(classes.column, classes.helper)}>
+            <Typography variant="caption">
+              <br />
+              <img
+                id="fundus"
+                src="http://www.njvision.net/wp-content/uploads/2015/05/faaea6a30b6bc45994eb59cf2062b659-300x300.jpg"
+                style={{
+                  width: "120px",
+                  height: "120px",
+                  display: "none"
+                }}
+                alt="eyecheck"
+              />
+            </Typography>
+          </div>
+        </ExpansionPanelDetails>
         <Divider />
         <ExpansionPanelActions>
-          <Button size="small">Cancel</Button>
           <Button variant="contained" color="inherit">
             <a
               className={classes.link}
-              href="https://www.dropbox.com/home/StrabismusReports/IFTTT/Email/EC%20Ref%3A%2013%20-%2003/07"
+              href="https://www.dropbox.com/sh/qjoffk8hm4e0h9c/AADiULx8N2Ln3YUT_KHFP-Fya?dl=0"
             >
               View All{" "}
             </a>

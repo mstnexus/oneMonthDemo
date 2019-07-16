@@ -28,7 +28,7 @@ import {
   Typography
 } from "@material-ui/core";
 import { DatePicker } from "@material-ui/pickers";
-import moment from "moment";
+import * as moment from "moment";
 
 class AppointmentBuilder extends Component {
   constructor() {
@@ -73,6 +73,13 @@ class AppointmentBuilder extends Component {
   //     confirmationTextVisible: true
   //   });
   // }
+
+  handleFetch(response) {
+    const { configs, appointments } = response;
+    const initSchedule = {};
+    const today = moment().startOf("day");
+    initSchedule[today.format("YYYY-DD-MM")] = true;
+  }
 
   handleClose() {
     this.setState({ setOpen: false, open: false });
@@ -269,6 +276,7 @@ class AppointmentBuilder extends Component {
       </section>
     );
   }
+
   componentDidMount() {
     // Initialize the App Client
     this.client = Stitch.initializeDefaultAppClient(
